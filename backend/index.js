@@ -14,7 +14,7 @@ const port = process.env.PORT || 4000;
 // ✅ Await DB connection
 await connectDB();
 
-const allowedOrigins = ['http://localhost:5173','https://auth-frontend-tau-one.vercel.app'];
+const allowedOrigins = ['http://localhost:5173'];
 
 app.use(express.json());
 app.use(cookieParser());
