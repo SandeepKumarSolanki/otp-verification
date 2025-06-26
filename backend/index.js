@@ -14,7 +14,7 @@ const port = process.env.PORT || 4000;
 // ✅ Await DB connection
 await connectDB();
 
-const allowedOrigins = ['http://localhost:5173','https://authtentication-frontend.vercel.app'];
+const allowedOrigins = ['http://localhost:5173'];
 
 app.use(express.json());
 app.use(cookieParser());
@@ -34,5 +34,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Server started on PORT: ${port}`);
+  console.log(`Server started on PORT: ${port}`);
 });
