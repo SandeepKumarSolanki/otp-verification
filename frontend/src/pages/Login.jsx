@@ -6,9 +6,10 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 // ✅ Set axios to send cookies globally (important for auth)
-axios.defaults.withCredentials = true;
+
 
 const Login = () => {
+  axios.defaults.withCredentials = true;
   const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -29,11 +30,15 @@ const Login = () => {
         });
 
         if (data.success) {
+          console.log("success",data);
+
           setIsLoggedIn(true);
           getUserData();
           // ✅ Wait a bit to ensure cookies are stored before navigation
           setTimeout(() => navigate('/'), 300);
+         
         } else {
+          console.log("err",data);
           toast.error(data.message);
         }
       } else {
@@ -45,12 +50,16 @@ const Login = () => {
         if (data.success) {
           setIsLoggedIn(true);
           getUserData();
-          setTimeout(() => navigate('/'), 300);
+          setName('')
+          setEmail('')
+          setPassword('')
+          setTimeout(() => navigate('/'), 300)
         } else {
           toast.error(data.message);
         }
       }
     } catch (error) {
+      console.log("catch", error)
       toast.error(error.response?.data?.message || error.message);
     }
   };
