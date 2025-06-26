@@ -204,6 +204,10 @@ export const sendResetOtp = async (req, res) => {
 //Check if user is authenticated or not
 export const isAuthenticated = async (req, res) => {
     try {
+        const userId = req.user;
+        if(!userId){
+            return res.json({success : false, message : "User not authenticated"})
+        }
         return res.json({success : true, message : "User is authenticated"})
     } catch (error) {
         console.log(error)
